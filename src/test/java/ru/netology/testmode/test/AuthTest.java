@@ -59,7 +59,7 @@ class AuthTest {
         $("[data-test-id='password'] input").setValue(blockedUser.getPassword());
         $("[data-test-id='action-login']").click();
         //$("[data-test-id='error-notification'] .notification__content").shouldHave(Condition.exactText
-          //      ("Ошибка! ")).shouldBe(Condition.visible);
+          //      ("Ошибка!")).shouldBe(Condition.visible);
     }
 
     @Test
@@ -70,6 +70,11 @@ class AuthTest {
         // TODO: добавить логику теста в рамках которого будет выполнена попытка входа в личный кабинет с неверным
         //  логином, для заполнения поля формы "Логин" используйте переменную wrongLogin,
         //  "Пароль" - пользователя registeredUser
+        $("[data-test-id='login'] input").setValue(wrongLogin);
+        $("[data-test-id='password'] input").setValue(registeredUser.getPassword());
+        $("[data-test-id='action-login']").click();
+        $("[data-test-id='error-notification'] .notification__content").shouldHave(Condition.exactText
+                ("Ошибка! Неверно указан логин или пароль")).shouldBe(Condition.visible);
     }
 
     @Test
@@ -80,5 +85,10 @@ class AuthTest {
         // TODO: добавить логику теста в рамках которого будет выполнена попытка входа в личный кабинет с неверным
         //  паролем, для заполнения поля формы "Логин" используйте пользователя registeredUser,
         //  "Пароль" - переменную wrongPassword
+        $("[data-test-id='login'] input").setValue(registeredUser.getLogin());
+        $("[data-test-id='password'] input").setValue(wrongPassword);
+        $("[data-test-id='action-login']").click();
+        $("[data-test-id='error-notification'] .notification__content").shouldHave(Condition.exactText
+                ("Ошибка! Неверно указан логин или пароль")).shouldBe(Condition.visible);
     }
 }
