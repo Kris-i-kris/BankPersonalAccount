@@ -30,7 +30,7 @@ public class DataGenerator {
         //  Пример реализации метода показан в условии к задаче.
         given()
                 .spec(requestSpec)
-                .body(new RegistrationDto("vasya", "password", "active"))
+                .body(user)
                 .when()
                 .post("/api/system/users ")
                 .then()
